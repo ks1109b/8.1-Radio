@@ -29,14 +29,6 @@ class RadioTest {
     }
 
     @Test
-    public void shouldNextStation() {
-        Radio radio = new Radio();
-        radio.setCurrentStation(5);
-        radio.nextStation();
-        assertEquals(6, radio.getCurrentStation());
-    }
-
-    @Test
     public void shouldNextFromMaxStation() {
         Radio radio = new Radio();
         radio.setCurrentStation(9);
@@ -50,14 +42,6 @@ class RadioTest {
         radio.setCurrentStation(0);
         radio.nextStation();
         assertEquals(1, radio.getCurrentStation());
-    }
-
-    @Test
-    public void shouldPrevStation() {
-        Radio radio = new Radio();
-        radio.setCurrentStation(6);
-        radio.prevStation();
-        assertEquals(5, radio.getCurrentStation());
     }
 
     @Test
@@ -98,14 +82,6 @@ class RadioTest {
     }
 
     @Test
-    public void shouldNextVolume() {
-        Radio radio = new Radio();
-        radio.setVolume(5);
-        radio.nextVolume();
-        Assertions.assertEquals(6, radio.getVolume());
-    }
-
-    @Test
     public void shouldNextFromMaxVolume() {
         Radio radio = new Radio();
         radio.setVolume(10);
@@ -119,14 +95,6 @@ class RadioTest {
         radio.setVolume(0);
         radio.nextVolume();
         Assertions.assertEquals(1, radio.getVolume());
-    }
-
-    @Test
-    public void shouldPrevVolume() {
-        Radio radio = new Radio();
-        radio.setVolume(6);
-        radio.prevVolume();
-        Assertions.assertEquals(5, radio.getVolume());
     }
 
     @Test
@@ -145,5 +113,3 @@ class RadioTest {
         Assertions.assertEquals(0, radio.getVolume());
     }
 }
-
-
