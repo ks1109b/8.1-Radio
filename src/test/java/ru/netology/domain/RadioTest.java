@@ -16,6 +16,8 @@ class RadioTest {
     @Test
     public void shouldSetSettings() {
         Radio radio = new Radio(5,5);
+        radio.setStation();
+        radio.setVolume();
         assertEquals(5, radio.getCurrentStation());
         assertEquals(5, radio.getVolume());
     }
@@ -23,6 +25,8 @@ class RadioTest {
     @Test
     public void shouldSetBelowSettings() {
         Radio radio = new Radio(-1, -1);
+        radio.setStation();
+        radio.setVolume();
         assertEquals(0, radio.getCurrentStation());
         assertEquals(0, radio.getVolume());
     }
@@ -30,6 +34,8 @@ class RadioTest {
     @Test
     public void shouldSetAboveSettings() {
         Radio radio = new Radio(10,11);
+        radio.setStation();
+        radio.setVolume();
         assertEquals(9, radio.getCurrentStation());
         assertEquals(10, radio.getVolume());
     }
