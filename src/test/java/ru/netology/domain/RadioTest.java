@@ -1,115 +1,73 @@
 package ru.netology.domain;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class RadioTest {
 
     @Test
-    public void shouldSetStation() {
+    public void shouldInitSettings() {
         Radio radio = new Radio();
-        radio.setCurrentStation(5);
-        assertEquals(5, radio.getCurrentStation());
-    }
-
-    @Test
-    public void shouldSetBelowStation() {
-        Radio radio = new Radio();
-        radio.setCurrentStation(-1);
-        assertEquals(0, radio.getCurrentStation());
-    }
-
-    @Test
-    public void shouldSetAboveStation() {
-        Radio radio = new Radio();
-        radio.setCurrentStation(10);
-        assertEquals(9, radio.getCurrentStation());
-    }
-
-    @Test
-    public void shouldNextFromMaxStation() {
-        Radio radio = new Radio();
-        radio.setCurrentStation(9);
-        radio.nextStation();
-        assertEquals(0, radio.getCurrentStation());
-    }
-
-    @Test
-    public void shouldNextFromMinStation() {
-        Radio radio = new Radio();
-        radio.setCurrentStation(0);
-        radio.nextStation();
         assertEquals(1, radio.getCurrentStation());
+        assertEquals(3, radio.getVolume());
     }
 
     @Test
-    public void shouldPrevFromMaxStation() {
-        Radio radio = new Radio();
-        radio.setCurrentStation(9);
-        radio.prevStation();
-        assertEquals(8, radio.getCurrentStation());
+    public void shouldSetSettings() {
+        Radio radio = new Radio(5,5);
+        assertEquals(5, radio.getCurrentStation());
+        assertEquals(5, radio.getVolume());
     }
 
     @Test
-    public void shouldPrevFromMinStation() {
-        Radio radio = new Radio();
-        radio.setCurrentStation(0);
-        radio.prevStation();
+    public void shouldSetBelowSettings() {
+        Radio radio = new Radio(-1, -1);
+        assertEquals(0, radio.getCurrentStation());
+        assertEquals(0, radio.getVolume());
+    }
+
+    @Test
+    public void shouldSetAboveSettings() {
+        Radio radio = new Radio(10,11);
         assertEquals(9, radio.getCurrentStation());
+        assertEquals(10, radio.getVolume());
     }
 
     @Test
-    public void shouldSetVolume() {
-        Radio radio = new Radio();
-        radio.setVolume(5);
-        Assertions.assertEquals(5, radio.getVolume());
-    }
-
-    @Test
-    public void shouldSetBelowVolume() {
-        Radio radio = new Radio();
-        radio.setVolume(-1);
-        Assertions.assertEquals(0, radio.getVolume());
-    }
-
-    @Test
-    public void shouldSetAboveVolume() {
-        Radio radio = new Radio();
-        radio.setVolume(11);
-        Assertions.assertEquals(10, radio.getVolume());
-    }
-
-    @Test
-    public void shouldNextFromMaxVolume() {
-        Radio radio = new Radio();
-        radio.setVolume(10);
+    public void shouldNextFromMaxSettings() {
+        Radio radio = new Radio(9, 10);
+        radio.nextStation();
         radio.nextVolume();
-        Assertions.assertEquals(10, radio.getVolume());
+        assertEquals(0, radio.getCurrentStation());
+        assertEquals(10, radio.getVolume());
     }
 
     @Test
-    public void shouldNextFromMinVolume() {
-        Radio radio = new Radio();
-        radio.setVolume(0);
+    public void shouldNextFromMinSettings() {
+        Radio radio = new Radio(0,0);
+        radio.nextStation();
         radio.nextVolume();
-        Assertions.assertEquals(1, radio.getVolume());
+        assertEquals(1, radio.getCurrentStation());
+        assertEquals(1, radio.getVolume());
     }
 
     @Test
-    public void shouldPrevFromMaxVolume() {
-        Radio radio = new Radio();
-        radio.setVolume(10);
+    public void shouldPrevFromMaxSettings() {
+        Radio radio = new Radio(9, 10);
+        radio.prevStation();
         radio.prevVolume();
-        Assertions.assertEquals(9, radio.getVolume());
+        assertEquals(8, radio.getCurrentStation());
+        assertEquals(9, radio.getVolume());
     }
 
     @Test
-    public void shouldPrevFromMinVolume() {
-        Radio radio = new Radio();
-        radio.setVolume(0);
+    public void shouldPrevFromMinSettings() {
+        Radio radio = new Radio(0, 0);
+        radio.prevStation();
         radio.prevVolume();
-        Assertions.assertEquals(0, radio.getVolume());
+        assertEquals(9, radio.getCurrentStation());
+        assertEquals(0, radio.getVolume());
     }
+
 }
