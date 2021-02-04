@@ -10,36 +10,43 @@ import lombok.NoArgsConstructor;
 
 public class Radio {
 
+    private int minStation = 0;
     private int currentStation = 1;
-    private int volume = 3;
+    private int countStation = 10;
+    private int maxStation = countStation;
+    private int minVolume = 0;
+    private int currentVolume = 3;
+    private int maxVolume = 100;
 
-    public void setStation() {
-        int currentStation = getCurrentStation();
-        if (currentStation > 9) {
-            currentStation = 9;
+    public Radio(int countStation) {
+        this.countStation = countStation;
+    }
+
+    public void setStation(int currentStation) {
+        if (currentStation > maxStation) {
+            currentStation = maxStation;
         }
-        if (currentStation < 0) {
-            currentStation = 0;
+        if (currentStation < minStation) {
+            currentStation = minStation;
         }
         this.currentStation = currentStation;
     }
 
-    public void setVolume() {
-        int volume = getVolume();
-        if (volume > 10) {
-            volume = 10;
+    public void setCurrentVolume(int currentVolume) {
+        if (currentVolume > maxVolume) {
+            currentVolume = maxVolume;
         }
-        if (volume < 0) {
-            volume = 0;
+        if (currentVolume < minVolume) {
+            currentVolume = minVolume;
         }
-        this.volume = volume;
+        this.currentVolume = currentVolume;
     }
 
     public void nextStation() {
         int currentStation = getCurrentStation();
         currentStation++;
-        if (currentStation > 9) {
-            currentStation = 0;
+        if (currentStation > countStation) {
+            currentStation = minStation;
         }
         this.currentStation = currentStation;
     }
@@ -47,27 +54,27 @@ public class Radio {
     public void prevStation() {
         int currentStation = getCurrentStation();
         currentStation--;
-        if (currentStation < 0) {
-            currentStation = 9;
+        if (currentStation < minStation) {
+            currentStation = countStation;
         }
         this.currentStation = currentStation;
     }
 
     public void nextVolume() {
-        int volume = getVolume();
-        volume++;
-        if (volume > 10) {
+        int currentVolume = getCurrentVolume();
+        currentVolume++;
+        if (currentVolume > maxVolume) {
             return;
         }
-        this.volume = volume;
+        this.currentVolume = currentVolume;
     }
 
     public void prevVolume() {
-        int volume = getVolume();
-        volume--;
-        if (volume < 0) {
+        int currentVolume = getCurrentVolume();
+        currentVolume--;
+        if (currentVolume < minVolume) {
             return;
         }
-        this.volume = volume;
+        this.currentVolume = currentVolume;
     }
 }
